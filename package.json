@@ -5,7 +5,7 @@
     "dev": "next dev",
     "lint": "next lint",
     "build": "next build",
-    "build:test": "npm run db:reset && set NODE_ENV=\"test\" && next build",
+    "build:test": "npm run db:reset && dotenv -c test next build ",
     "start": "next start",
     "start:test": "set NODE_ENV=\"test\" && next start",
     "test": "jest --watch",
