@@ -18,10 +18,12 @@
  */
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
+  config.env.REVALIDATION_SECRET = process.env.REVALIDATION_SECRET;
   on("task", {
     "db:reset": () => resetDb().then(()=> null),
     addBand: (newBand) => addBand(newBand).then(()=> null)
   });
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+  return config;
 }
