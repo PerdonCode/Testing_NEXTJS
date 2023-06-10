@@ -25,7 +25,7 @@ test("POST /api/users receives token with correct credentials", async () => {
       expect(res.status).toBe(200);
       const json = await res.json();
 
-      expect(json).toHaveProperty("user");
+      expect(json).HaveOwnProperty("user");
       expect(json.user.id).toEqual(1);
       expect(json.user.email).toEqual("test@test.test");
       expect(json.user).toHaveProperty("token");
