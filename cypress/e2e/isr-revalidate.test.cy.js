@@ -25,5 +25,7 @@ it("should load refreshed page from cache after new vand is added", () => {
     name: /avalanche of cheese/i
   }).should("exist")
 
+  // reset ISR cache to initial db conditions
+  cy.resetDbAndClearIsrCache();
 
 })
