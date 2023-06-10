@@ -3,6 +3,7 @@ import { generateRandomId } from "../../lib/features/reservations/utils";
 
 
 const ONE_SECOND  = 1000;
+const FIFTEEN_SECONDS = 15 * ONE_SECOND;
 const THIRTY_SECONDS = 30 * ONE_SECOND;
 
 it("it should refresh the page after 30 seconds", () => {
@@ -27,4 +28,34 @@ it("it should refresh the page after 30 seconds", () => {
   // advance clock 30 seconds or more; now sold out show should display
   cy.tick(THIRTY_SECONDS);
   cy.findAllByText("/sold out/i").should("have.length", 2);
+})
+
+it("should refresh the reservations page after fifiteen seconds", () => {
+  cy.block();
+  cy.task("db:reset").visit("/reservations/0");
+
+  // click "sign-in " button (from main page, not nav) to sign in 
+  // (in app where user/ password  weren't pre-filled, would also need to get from env vard and fill)
+  cy.findByRole("main").within(() => {
+    cy.findByRole("button", {name: /sign in/i}).click();
+  })
+
+  // it should show 10 seats left
+  cy.findByText(/10 seats left/i).should("exist");
+
+  //the first show from the faka data has an ID of 0 and 10 available seats
+  const newReservation = generateNewReservation({
+    reservationId: 12345,
+    showId: 0,
+    seatCount: 2
+  });
+  cy.task("addReservation", newReservation);
+
+  // advance time and check again
+  cy.tick(ONE_SECOND);
+  cy.findByText(/10 seats left/i).should("exist");
+
+  //advance time and check again
+  cy.tick(FIFTEEN_SECONDS);
+  cy.findByText(/8 seats left/i).should("exist");
 })
