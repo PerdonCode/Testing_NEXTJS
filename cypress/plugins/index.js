@@ -13,6 +13,7 @@
 // the project's config changing)
  const {resetDb} = require("../../__tests__/__mocks__/db/utils/reset-db")
  const {addBand} = require("../../lib/features/bands/queries")
+ const {addReservation} = require("../../lib/features/reservations/queries")
 /**
  * @type {Cypress.PluginConfig}
  */
@@ -21,7 +22,9 @@ module.exports = (on, config) => {
   config.env.REVALIDATION_SECRET = process.env.REVALIDATION_SECRET;
   on("task", {
     "db:reset": () => resetDb().then(()=> null),
-    addBand: (newBand) => addBand(newBand).then(()=> null)
+    addBand: (newBand) => addBand(newBand).then(()=> null),
+    // add reservation to the Db
+    addReservation: (newReservation) => addReservation(newReservation).then(()=> null)
   });
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config

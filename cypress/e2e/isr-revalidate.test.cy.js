@@ -37,6 +37,8 @@ it("should load refreshed page from cache after new show is added", () => {
   cy.task("db:reset").visit("/shows");
   cy.findByRole("heading", { name: /avalanche of cheese/i}).should("not exist");
 
+  const secret = Cypress.env("REVALIDATION_SECRET")
+
   cy.request("POST", `/api/shows?secret=${secret}`, {newShow: show}).then((response) => {
     // revalidate json resp equal to true
     expect(response.body.revalidated).to.equal(true);
