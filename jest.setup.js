@@ -7,6 +7,7 @@ import "@testing-library/jest-dom/extend-expect";
 
 // polyfill necesary for jsdom test environment
 import {TextDecoder, TextEncoder} from 'util';
+import {resetDb} from "@/__tests__/__mocks__/db/utils/reset-db"
 
 global.TextDecoder = TextDecoder;
 global.TextEncoder = TextEncoder
@@ -15,6 +16,10 @@ global.TextEncoder = TextEncoder
 import { server } from './__tests__/__mocks__/msw/server'
 // Establish API mocking before all tests.
 beforeAll(() => server.listen())
+
+beforeEach( async() => {
+await resetDb();
+})
 
 // Reset any request handlers that we may add during the tests,
 // so they don't affect other tests.
