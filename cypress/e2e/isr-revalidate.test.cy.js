@@ -16,7 +16,7 @@ it("should load refreshed page from cache after new vand is added", () => {
 
   cy.request("POST", `/api/bands?secret=${secret}`, {newBand: band}).then((response) => {
     // revalidate json resp equal to true
-    expect(response.body.revalidate).to.equal(true);
+    expect(response.body.revalidated).to.equal(true);
   })
 
   // reload page; new band should appear

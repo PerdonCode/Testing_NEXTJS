@@ -1,4 +1,4 @@
-import { resetDB } from "__tests__/__mocks__/db/utils/reset-db";
+import { resetDb } from "__tests__/__mocks__/db/utils/reset-db";
 import { defineConfig } from "cypress";
 import { addBand } from "lib/features/bands/queries";
 import { addReservation } from "lib/features/reservations/queries";
@@ -14,7 +14,7 @@ export default defineConfig({
     // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
       on("task", {
-        "db:reset": () => resetDB().then(() => null),
+        "db:reset": () => resetDb().then(() => null),
         addBand: (newBand) => addBand(newBand).then(() => null),
         addReservation: (newReservation) =>
           addReservation(newReservation).then(() => null),

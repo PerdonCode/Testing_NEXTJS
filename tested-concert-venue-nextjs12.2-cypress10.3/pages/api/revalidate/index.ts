@@ -15,8 +15,8 @@ handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   // revalidate pages that can have ISR data updates
-  await res.revalidate("/shows");
-  await res.revalidate("/bands");
+  await res.unstable_revalidate("/shows");
+  await res.unstable_revalidate("/bands");
 
   return res.status(200).end();
 });
