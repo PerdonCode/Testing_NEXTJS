@@ -76,6 +76,23 @@ it("redirects to sign in for protected pages", () => {
       cy.visit($url);
       cy.findByLabelText(/email adress/i).should("exist");
       cy.findByLabelText(/password/i).should("exist");
-    })
-  })
+    });
+  });
+});
+
+it("does not show sign-in page when already signed in", () => {
+  cy.task("db:reset").signIn(
+    Cypress.env("TEST_USER_EMAIL"),
+    Cypress.env("TEST_USER_PASSWORD")
+  );
+
+  // acces tickets page for first page
+  cy.visit("/reservations/0");
+
+
+  // make sure there is no sign-in heading
+  cy.findByRole("heading", {name: /sign in to your account/i}).should("not.exist");
+
+  // make sure ticket purchase button shows
+  cy.findByRole("button", {name: /purchase/i}).should("exist");
 })
