@@ -3,7 +3,7 @@ import { Band } from "@/lib/features/bands/types";
 export const generateNewBand = (bandId: number): Band => ({
   id: bandId,
   name: "Avalanche of Cheese",
-  description: "masterful reggae featuring brilliant harmonies",
+  description: "masterful reggae featuring brilliant harmoniest",
   image: {
     fileName: "band11.jpg",
     authorName: "Saksham Gangwar",

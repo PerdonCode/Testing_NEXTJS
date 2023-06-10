@@ -4,7 +4,7 @@ import { filenames, writeJSONToFile } from "@/lib/db/db-utils";
 // reading from and writing to files ==== async
 export const resetDb = async () =>{
   // failsafe against resetting production DB!
-  const safeToReset = process.env.NODE_ENV === "test";
+  const safeToReset = process.env.NODE_ENV === "test" || process.env.CYPRESS;
   if(!safeToReset){
     console.log("WARNING: database reset unavailable outside test environment");
     return;
