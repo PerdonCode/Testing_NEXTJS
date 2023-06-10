@@ -62,7 +62,7 @@
     "eslint": "8.5.0",
     "eslint-config-next": "^12.1.0",
     "eslint-plugin-testing-library": "^5.0.1",
-    "jest": "^27.4.5",
+    "jest": "^27.5.1",
     "msw": "^1.2.1",
     "next-test-api-route-handler": "^3.1.8",
     "start-server-and-test": "^2.0.0",
