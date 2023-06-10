@@ -68,4 +68,14 @@ it("runs auth flow for protected userpage, including failed sing in ", () => {
   // check for user and sign out button on navar
   cy.findByRole("button", {name: /sign out/i}).should("exist");
   cy.findByRole("button", {name: /sign in/i}).should("not.exist");
+});
+
+it("redirects to sign in for protected pages", () => {
+  cy.fixture("protected-pages.json").then((urls) => {
+    urls.forEacht(($url) => {
+      cy.visit($url);
+      cy.findByLabelText(/email adress/i).should("exist");
+      cy.findByLabelText(/password/i).should("exist");
+    })
+  })
 })
