@@ -1,7 +1,7 @@
 import { response } from "msw";
-import { generateNewBand } from "../../__tests__/__mocks__/fakeData/newBand"
-import { generateNewShow} from "../../__tests__/__mocks__/fakeData/newShow"
-import { generateRandomId } from "../../lib/features/reservations/utils"
+import { generateNewBand } from "../../../__tests__/__mocks__/fakeData/newBand"
+import { generateNewShow} from "../../../__tests__/__mocks__/fakeData/newShow"
+import { generateRandomId } from "../../../lib/features/reservations/utils"
 import { findByRole } from "@testing-library/react";
 
 it("should load refreshed page from cache after new vand is added", () => {
