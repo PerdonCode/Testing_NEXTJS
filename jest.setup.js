@@ -5,6 +5,12 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom/extend-expect";
 
+// polyfill necesary for jsdom test environment
+import {TextDecoder, TextEncoder} from 'util';
+
+global.TextDecoder = TextDecoder;
+global.TextEncoder = TextEncoder
+
 // src/setupTests.js
 import { server } from './__tests__/__mocks__/msw/server'
 // Establish API mocking before all tests.
